@@ -28,4 +28,4 @@ RUN npm install
 
 COPY . .
 EXPOSE 80
-ENTRYPOINT npm start 
+# ENTRYPOINT npm start 

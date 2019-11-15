@@ -10,11 +10,11 @@ download = (uri, filename, callback) => {
   });
 };
 
-downloadImage = async(filelist) => {
+downloadImage = async(filelist, imageHash) => {
 	return new Promise((resolve, reject) => {
 		let filepath = [], filename = [];
 		filepath.push(filelist[0]);
-		filename.push('./images/' + filelist[0].split("=")[1] + ".jpg");
+		filename.push(`./images/${imageHash}/test.jpg`);
 		const threads = 1;
 		async.eachLimit(filepath, threads, function(url, next) { // check async module
 			download(url, filename[0], next);
