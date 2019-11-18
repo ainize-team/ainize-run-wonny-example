@@ -15,3 +15,5 @@ docker run -it wonny
 https://localhost/evaluate?image=${imagePath}
 ```
 
+You have to pass url for image using imagePath variable.
+

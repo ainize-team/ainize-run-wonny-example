@@ -12,7 +12,6 @@ def image_file_to_json(img_path):
 
 def image_dir_to_json(img_dir, img_type='jpg'):
     img_paths = glob.glob(os.path.join(img_dir, '*.'+img_type))
-    print(img_paths)
     samples = []
     for img_path in img_paths:
         img_id = os.path.basename(img_path).split('.')[0]
@@ -34,8 +33,6 @@ if __name__ == "__main__":
         samples = image_dir_to_json(image_dir, img_type='jpg')
 
     curScore = 0
-    print(image_dir)
-    print (samples)
     for sample in samples :
         img_file = os.path.join(image_dir, '{}.{}'.format(sample['image_id'], 'jpg'))
         print(img_file)

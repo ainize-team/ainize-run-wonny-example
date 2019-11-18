@@ -25,7 +25,8 @@ ENV CUDA_HOME=/usr/local/cuda
 
 COPY package.json .
 RUN npm install
+RUN mkdir /workspace/images
 
 COPY . .
 EXPOSE 80
-# ENTRYPOINT npm start 
+ENTRYPOINT npm start 
