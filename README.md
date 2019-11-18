@@ -1,4 +1,4 @@
-# Ainize-run-wonny-example ![alt text](/images/wonny.jpeg)
+# Ainize-run-wonny-example ![alt text](/images/wonny.jpeg | width = 50)
 
 This repository is about Image Quality Assessment based on "NIMA: Neural Image Assessment" from Google's research. We refer to [open source](https://github.com/idealo/image-quality-assessment). 
 
