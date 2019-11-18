@@ -11,7 +11,7 @@ docker build -t wonny .
 ```
 
 ## Docker run 
-Open port 80 for docker and we use port 8080 for server, so we see clearly using option p.
+Open port 80 for docker and we use port 8080 for server, so we port forwarding using option p.
 ```
 docker run -p 80:8080 -it wonny
 ```
@@ -25,7 +25,9 @@ You have to pass url for image using imagePath variable.
 For convience, we open public [google drive](https://drive.google.com/drive/folders/1Ou30F1YEa0Wnh6V1gPjSwmxNmobqe_X2) for upload images. 
 
 You can get image id from shareable link then you pass image link like below.
+```
 https://drive.google.com/uc?export=view&id=${imageId}
+```
 
 
 ## References
