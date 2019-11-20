@@ -10,7 +10,7 @@ app.use(bodyParser.json())
 app.use(cors());
 app.get('/evaluate', evaluate);
 
-const server = app.listen(8080, () => {
+const server = app.listen(80, () => {
   const host = server.address().address;
   const port = server.address().port;
   console.log(`Example app listening at http://${host}:${port}`);

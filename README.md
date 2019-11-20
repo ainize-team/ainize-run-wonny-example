@@ -11,9 +11,8 @@ docker build -t wonny .
 ```
 
 ## Docker run 
-Open port 80 for docker and we use port 8080 for server, so we port forwarding using option p.
 ```
-docker run -p 80:8080 -it wonny
+docker run -it wonny
 ```
 
 ## How to request using https
