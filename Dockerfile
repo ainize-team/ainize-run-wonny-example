@@ -1,4 +1,4 @@
-FROM ufoym/deepo:all
+FROM ufoym/deepo:tensorflow
 
 CMD ["bash"]
 
