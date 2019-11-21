@@ -21,13 +21,21 @@ http://${host}:80/evaluate?image=${imagePath}
 ```
 You have to pass url for image using imagePath variable.
 
+### 1. upload image to imgur
+https://imgur.com/
+
+Upload your image and get link.  
+<img src="/images/guide3.png" width="250" />  
+
+### 2. upload image to google drive 
+
 For convience, we open public [google drive](https://drive.google.com/drive/folders/1Ou30F1YEa0Wnh6V1gPjSwmxNmobqe_X2) for upload images. 
 
 You can get image id from shareable link then you pass image link like below.  
 <img src="/images/guide.png" width="250" />
 <img src="/images/guide2.png" width="250" />
 ```
-https://drive.google.com/uc?export=view&id=${imageId}
+${imagePath} = https://drive.google.com/uc?export=view&id=${imageId}
 ```
 
 

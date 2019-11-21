@@ -1,4 +1,3 @@
-const fs = require("fs");
 const downloadImage = require("./get_posts");
 global.XMLHttpRequest = require("xhr2");
 const { PythonShell } = require("python-shell");
