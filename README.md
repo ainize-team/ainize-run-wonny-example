@@ -1,8 +1,8 @@
 # Ainize-run-wonny-example ![alt text](/images/wonny.jpeg)
 
-This repository is about Image Quality Assessment based on "NIMA: Neural Image Assessment" from Google's research. We refer to [open source](https://github.com/idealo/image-quality-assessment). 
+This repository is about Image Quality Assessment based on [open source](https://github.com/idealo/image-quality-assessment), "NIMA: Neural Image Assessment" from Google's research. 
 
-You can use this project when you want to evaluate your image between 1 - 10 score. We develop a server using node js so when you provide image storage url, you can receive score for that image. 
+You can use this project when you want to evaluate your image in the scale of 1 to 10. We developed a server using Node.js so when you provide an image storage url, you can receive marks(1 - 10) for that image. 
 
 
 ## Docker build
