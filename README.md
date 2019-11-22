@@ -25,7 +25,7 @@ You have to pass url for image using imagePath variable.
 https://imgur.com/
 
 Upload your image and get link.  
-<img src="/images/guide3.png" width="250" />  
+<img src="/images/guide1.png" width="250" />  
 
 ### 2. upload image to google drive 
 
