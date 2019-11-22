@@ -4,6 +4,8 @@ This repository is about Image Quality Assessment based on [open source](https:/
 
 You can use this project when you want to evaluate your image in the scale of 1 to 10. We developed a server using Node.js so when you provide an image storage url, you can receive marks(1 - 10) for that image. 
 
+[![Run on Ainize](https://ainize-run-web.herokuapp.com/static/images/run_on_ainize_button.png)](https://ainize-dev.web.app/redirect?git_repo=github.com/ainize-team/ainize-run-style-transfer)
+
 
 ## Docker build
 ```
