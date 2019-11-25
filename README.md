@@ -2,7 +2,7 @@
 
 This repository is about Image Quality Assessment based on [open source](https://github.com/idealo/image-quality-assessment), "NIMA: Neural Image Assessment" from Google's research. 
 
-You can use this project when you want to evaluate your image in the scale of 1 to 10. We developed a server using Node.js so when you provide an image storage url, you can receive marks(1 - 10) for tha
+You can use this project when you want to evaluate your image in the scale of 1 to 10. We developed a server using Node.js so when you provide an image storage url, you can receive marks(1 - 10) for that image.
 
 
 ## Docker build
