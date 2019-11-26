@@ -59,5 +59,5 @@ http://${host}:80/evaluate?image=${imageUrl}
 ```
 
 ## References
-* [Introducing NIMA: Neural Image Assessment](https://ai.googleblog.com/2017/12/introducing-nima-neural-image-assessment.html) Google AI Blog
+* [Introducing NIMA: Neural Image Assessment](https://ai.googleblog.com/2017/12/introducing-nima-neural-image-assessment.html) on Google AI Blog
 * https://github.com/idealo/image-quality-assessment
