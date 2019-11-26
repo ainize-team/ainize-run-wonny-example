@@ -7,7 +7,7 @@ The evaluation using Wonny server is done in the following steps:
 2. User queries Wonny server with the image url
 3. Wonny server returns a quality score of the image in the scale of 1 to 10
 
-Note that the implementation was done using Node.js.
+Note that the server is implemented in Node.js.
 
 # How to deploy
 
