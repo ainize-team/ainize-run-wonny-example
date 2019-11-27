@@ -26,7 +26,7 @@ docker run -it wonny
 ```
 Now the server is available at http://localhost. To learn how to query the server, see the next section.
 
-The docker image can be deployed using any docker-based deploy platform (e.g. Ainize Run).
+Note that the docker image can be deployed using any docker-based deploy platform (e.g. [ainize.ai](https://ainize.ai)).
 
 # How to query
 
