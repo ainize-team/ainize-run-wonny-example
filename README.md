@@ -24,6 +24,7 @@ docker build -t wonny .
 ```
 docker run -it wonny
 ```
+Now the server is available at http://localhost. To learn how to query the server, see the next section.
 
 The docker image can be deployed using any docker-based deploy platform (e.g. Ainize Run).
 
@@ -57,7 +58,8 @@ https://drive.google.com/uc?export=view&id=${imageId}
 
 Finally, you can pass the image url to Wonny server to get the evaluation result:
 ```
-http://${host}:80/evaluate?image=${imageUrl}
+http://${host}/evaluate?image=${imageUrl}
+http://localhost/evaluate?image=${imageUrl}  # for local host
 ```
 
 ## References
