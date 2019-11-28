@@ -3,6 +3,7 @@ global.XMLHttpRequest = require("xhr2");
 const { PythonShell } = require("python-shell");
 const sha1 = require("sha1");
 const parsedUrl = require('url');
+const fs = require('fs');
 
 exports.evaluate = async (req, res) => {
   const imagePath = parsedUrl.parse(req.url).query.substring(6,);
@@ -10,7 +11,13 @@ exports.evaluate = async (req, res) => {
   const filelist = [imagePath];
   await downloadImage(filelist, imageHash);
   const score = await runPython(imageHash);
-  await res.status(200).send(score);
+  fs.readFile(`/workspace/images/${imageHash}`, function (err, data) {
+    if (err) throw err;
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<html><body><img src="data:image/jpeg;base64,')
+    res.write(Buffer.from(data).toString('base64'));
+    res.end('" width="300" height="300"/><br /> score : ' + score + '</body></html>');
+  });
 };
 
 runPython = imageHash => {
