@@ -1,4 +1,4 @@
-# Ainize-run-wonny-example ![alt text](/images/wonny.jpeg)
+# Ainize-run-wonny-example ![alt text](/images/wonny.jpeg) 
 
 [![Run on Ainize](https://ainize.ai/static/images/run_on_ainize_button.png)](https://ainize.web.app/redirect?git_repo=github.com/ainize-team/ainize-run-wonny-example)
 
