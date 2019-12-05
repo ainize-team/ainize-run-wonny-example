@@ -1,6 +1,6 @@
 # Ainize-run-wonny-example ![alt text](/images/wonny.jpeg) 
 
-[![Run on Ainize](https://ainize.ai/static/images/run_on_ainize_button.png)](https://ainize.web.app/redirect?git_repo=github.com/ainize-team/ainize-run-wonny-example)
+[![Run on Ainize](https://ainize.ai/static/images/run_on_ainize_button.svg)](https://ainize.web.app/redirect?git_repo=github.com/ainize-team/ainize-run-wonny-example)
 
 This repository provides an API server, called Wonny server, that evaluates images based on an aesthetic and technical image quality model. The model used in the server is from [Image Quality Assessment](https://github.com/idealo/image-quality-assessment), which is an implementation of Google's research paper "NIMA: Neural Image Assessment". 
 
