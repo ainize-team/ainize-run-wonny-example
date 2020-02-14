@@ -11,6 +11,10 @@ exports.evaluate = async (req, res) => {
   const filelist = [imagePath];
   await downloadImage(filelist, imageHash);
   const score = await runPython(imageHash);
+  if (req.accepts('json') || req.accepts('application/json')) {
+    res.json({score}).end();
+    return;
+  }
   fs.readFile(`/workspace/images/${imageHash}`, function (err, data) {
     if (err) throw err;
     res.writeHead(200, {'Content-Type': 'text/html'});
