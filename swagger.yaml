@@ -4,19 +4,25 @@ info:
   version: 0.1.1
 
 servers: 
-  - url: https://endpoint.ainize.ai/hyunhyerim/wonny/
+  - url: https://endpoint.ainize.ai/donghyeon/wonny/
 
 paths:
   /evaluate:
     get:
       summary: Returns a score of image.
       parameters:
-        - name: image
+        - name: filePath
           in: query
           required: true
           allowReserved: true
           schema:
             type: string
+        - name: filePathList
+            in: query
+            required: true
+            allowReserved: true
+            schema:
+              type: list
       responses:
         '200': # status code
           description: A score of image.
@@ -27,8 +33,6 @@ paths:
                 properties:
                   score:
                     type: number
-        '400':
-          description: The image path is invalid.
         default:
           description: Unexpected error 
                 

@@ -1,0 +1,28 @@
+
+######## header #########
+
+from model import *
+import numpy
+
+script_path = os.path.dirname(os.path.realpath(__file__))
+weights_image = script_path + "/weights_mobilenet_aesthetic_0.07.hdf5"
+weights_video = script_path + "/weights_mobilenet_technical_0.11.hdf5s"
+
+def evaluate(images, postType):
+    # # build model and load weights
+    weights_file = weights_image if postType == 'image' else weights_video
+    base_model_name = 'MobileNet'
+    model = MyModel(base_model_name, weights=None)
+    model.build()
+    model.my_model.load_weights(weights_file)
+
+    # initialize data generator
+    inputList = load_image(images[0], (224,224))
+    for image in images[1:]:
+        inputList = numpy.vstack((inputList, load_image(image, (224,224))))
+    # get predictions
+    prediction = predict(model.my_model, inputList)
+    output = calc_mean_score(prediction)
+    K.clear_session()
+    return output
+

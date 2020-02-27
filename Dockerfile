@@ -1,32 +1,27 @@
-FROM ufoym/deepo:tensorflow
+FROM tensorflow/tensorflow:1.13.1-gpu-py3
 
-CMD ["bash"]
-
-# Install Node.js 8 and npm 5
 RUN apt-get update
-RUN apt-get -y install curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
-RUN apt-get -y install nodejs
-RUN mkdir /workspace 
-WORKDIR /workspace
+ENV SHELL /bin/bash
 
-RUN rm -rf node_modules && npm install
 
-RUN pip3 install tensorflow==1.4.0
+# install npm and python
+RUN apt-get install -y \
+        apt-transport-https
+
+# install ml lib
+RUN pip3 install flask 
+RUN pip3 install pandas 
 RUN pip3 install keras==2.1.3
+RUN pip3 install "numpy<1.17"
+RUN pip3 install pillow
 
-RUN cd /usr/local/cuda/lib64 \
- && mv stubs/libcuda.so ./ \
- && ln -s libcuda.so libcuda.so.1 \
- && ldconfig
-ENV PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
-ENV LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-ENV CUDA_HOME=/usr/local/cuda
+# copy ain-v1-worker code.
+RUN mkdir /image-eval
+ADD package.json /image-eval
+ADD ./ /image-eval
 
-COPY package.json .
-RUN npm install
-RUN mkdir /workspace/images
+EXPOSE 5000
 
-COPY . .
-EXPOSE 80
-ENTRYPOINT npm start 
+WORKDIR /image-eval
+RUN yarn
+ENTRYPOINT python3 ./src/server.py 
