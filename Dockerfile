@@ -1,8 +1,7 @@
-FROM tensorflow/tensorflow:1.13.1-gpu-py3
+FROM tensorflow/tensorflow:1.13.1-py3
 
 RUN apt-get update
 ENV SHELL /bin/bash
-
 
 # install npm and python
 RUN apt-get install -y \
@@ -17,11 +16,9 @@ RUN pip3 install pillow
 
 # copy ain-v1-worker code.
 RUN mkdir /image-eval
-ADD package.json /image-eval
 ADD ./ /image-eval
 
 EXPOSE 5000
 
 WORKDIR /image-eval
-RUN yarn
 ENTRYPOINT python3 ./src/server.py 

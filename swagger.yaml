@@ -13,16 +13,16 @@ paths:
       parameters:
         - name: filePath
           in: query
-          required: true
+          required: false
           allowReserved: true
           schema:
             type: string
         - name: filePathList
             in: query
-            required: true
+            required: false
             allowReserved: true
             schema:
-              type: list
+              type: array
       responses:
         '200': # status code
           description: A score of image.

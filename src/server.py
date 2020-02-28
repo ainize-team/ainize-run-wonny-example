@@ -16,11 +16,7 @@ def removeFiles(filePathList):
 @app.route('/eval', methods=['GET', 'POST'])
 def eval():
     try:
-        if (request.args.get('filePath')):
-            filePathList = [request.args.get('filePath')]
-        elif (request.get_json()["filePathList"]):
-            filePathList = request.get_json()["filePathList"]
-            
+        filePathList = request.get_json()["filePathList"]
         print(filePathList)
         localFilePathList = []
         result = []
@@ -38,4 +34,4 @@ def eval():
         return {'error': str(e)}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
