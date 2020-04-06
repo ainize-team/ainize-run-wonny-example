@@ -7,18 +7,17 @@ servers:
   - url: https://evaluate-image.ehdgus8077.endpoint.ainize.ai
 
 paths:
-  /eval:
-    get:
+  /eval/images:
+    post:
       summary: Returns a score of image.
       parameters:
-        - name: filePathList
-          in: query
+        - name: urlList
+          in: json
           required: true
-          allowReserved: true
           schema:
             type: array
       responses:
-        '200': # status code
+        '200':
           description: A score of image.
           content:
             applicatioin/json:
@@ -29,4 +28,15 @@ paths:
                     type: number
         default:
           description: Unexpected error 
-                
+  /eval/image:
+    get:
+      summary: Returns a score of Image and Image.
+      parameters:
+        - name: url
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200': # status code
+          description: OK

@@ -18,7 +18,7 @@ RUN pip3 install pillow
 RUN mkdir /image-eval
 ADD ./ /image-eval
 
-EXPOSE 5000
+EXPOSE 80
 
 WORKDIR /image-eval
 ENTRYPOINT python3 ./src/server.py 
