@@ -12,10 +12,11 @@ paths:
       summary: Returns a score of image.
       parameters:
         - name: urlList
-          in: json
+          in: query
           required: true
           schema:
-            type: array
+            items:
+              type: array
       responses:
         '200':
           description: A score of image.
@@ -36,7 +37,8 @@ paths:
           in: query
           required: true
           schema:
-            type: string
+            items:
+              type: string
       responses:
-        '200': # status code
+        '200': 
           description: OK
