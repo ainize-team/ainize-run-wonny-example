@@ -9,14 +9,20 @@ servers:
 paths:
   /eval/images:
     post:
-      summary: Returns a score of image.
-      parameters:
-        - name: urlList
-          in: query
-          required: true
-          schema:
-            items:
-              type: array
+      summary: Returns a score of Image and Image.
+      requestBody:
+        required: true
+        content:
+            applicatioin/json:
+              schema:
+                type: object
+                properties:
+                  urlList:
+                    type: array
+                    items:
+                      type: string
+                      example: <image path>
+            
       responses:
         '200':
           description: A score of image.
@@ -26,9 +32,10 @@ paths:
                 type: object
                 properties:
                   score:
-                    type: number
-        default:
-          description: Unexpected error 
+                    type: array
+                    items:
+                      type: number
+                      example: 5.6666
   /eval/image:
     get:
       summary: Returns a score of Image and Image.
