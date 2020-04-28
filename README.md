@@ -60,7 +60,7 @@ Finally, you can pass the image url to Wonny server to get the evaluation result
 ```
 // Get
 http://${host}/eval/image?url=${imageUrl}
-http://localhost}/eval/image?url=${imageUrl}  # for local host
+http://localhost/eval/image?url=${imageUrl}  # for local host
 
 ```
 
