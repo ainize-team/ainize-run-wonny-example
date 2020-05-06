@@ -7,6 +7,12 @@ servers:
   - url: https://evaluate-image.ehdgus8077.endpoint.ainize.ai
 
 paths:
+  /healthz:
+    get:
+      summary: API For health checking.
+      responses:
+        '200':
+          description: OK
   /eval/images:
     post:
       summary: Returns a score of Image and Image.

@@ -6,6 +6,9 @@ import os, io
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 app = Flask(__name__)
 
+@app.route('/healthz', methods=['GET'])
+def healthz():
+   return 'ok'
 
 @app.route('/eval/images', methods=['POST'])
 def images():
