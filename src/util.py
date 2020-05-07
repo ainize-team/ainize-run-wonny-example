@@ -2,7 +2,8 @@
 import os, base64
 from urllib.request import urlopen
 import string 
-import random 
+import random
+import requests
 
 def getRandomStr(length):
     string_pool = string.ascii_lowercase
@@ -27,13 +28,33 @@ def removeFiles(filePaths):
     except:
         pass
 
+class DownloadPrecheckFailed(Exception):
+    pass
+
+DOWNLOAD_MAX_SIZE = 5 * 1024 * 1024
+
 def downloadImage(url):
-    with urlopen(url) as res:
-        res_data = res.read()
-        localFilePath =  IMAGE_PATH + '/' + getRandomStr(15) + '.jpg'
-        with open(localFilePath, 'wb') as f:
-            f.write(res_data)
-        return localFilePath
+    localFilePath =  IMAGE_PATH + '/' + getRandomStr(15) + '.jpg'
+    r = requests.get(url, stream=True)
+    # Precheck
+    content_type = r.headers.get('Content-Type')
+    if not content_type or content_type not in (
+        'image/jpeg',
+        'image/jpg',
+        'image/png',
+    ):
+        raise DownloadPrecheckFailed('Non-image url is not supported.')
+    content_length = int(r.headers.get('Content-Length', 0))
+    if not content_length or content_length > DOWNLOAD_MAX_SIZE:
+        raise DownloadPrecheckFailed('Size of file should be less than 5Mb.')
+    downloaded_size = 0
+    with open(localFilePath, 'wb') as handler:
+        for data in r.iter_content():
+            handler.write(data)
+            downloaded_size += len(data)
+            if downloaded_size > DOWNLOAD_MAX_SIZE:
+                raise DownloadPrecheckFailed('Size of file should be less than 5Mb.')
+    return localFilePath
 
 def downloadImages(urlList):
     localFilePaths = []

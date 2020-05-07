@@ -52,6 +52,10 @@ paths:
           schema:
             items:
               type: string
+          examples:
+            sample:
+              summary: sample URL
+              value: 'https://drive.google.com/uc?export=view&id=1SjpQKWR2ssWU358bI_d9YuFSxoNU1WPZ'   # ?ids=5
       responses:
         '200': 
           description: OK

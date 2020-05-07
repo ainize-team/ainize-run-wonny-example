@@ -15,6 +15,8 @@ from keras.models import Model
 from keras.layers import Dropout, Dense
 from keras.optimizers import Adam
 
+os.environ["CUDA_VISIBLE_DEVICES"] = '0'
+
 def earth_movers_distance(y_true, y_pred):
     cdf_true = K.cumsum(y_true, axis=-1)
     cdf_pred = K.cumsum(y_pred, axis=-1)
@@ -42,7 +44,7 @@ class MyModel:
         elif self.base_model_name == 'InceptionResNetV2':
             self.base_module = importlib.import_module('keras.applications.inception_resnet_v2')
         else:
-            self.base_module = importlib.import_module('keras.applications.'+self.base_model_name.lower())
+            self.base_module = importlib.import_module('keras.applications.' + self.base_model_name.lower())
 
     def build(self):
         # get base model class

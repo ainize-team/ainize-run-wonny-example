@@ -15,7 +15,7 @@ def images():
     try:
         urlList = request.get_json()["urlList"]
         localFilePathList = downloadImages(urlList)
-        result = list(evaluate(localFilePathList, "image"))
+        result = list(evaluate(localFilePathList))
         removeFiles(localFilePathList)
         return {'score': result}
     except Exception as e:
@@ -30,12 +30,13 @@ def image():
             if key != 'url':
                 url += '&' + key + '=' + request.args[key]
         localFilePath = downloadImage(url)
-        score = list(evaluate([localFilePath], "image"))
+        score = list(evaluate([localFilePath]))
         imageData = getBase64(localFilePath)
         result = render_template("index.html", imageData=imageData, score=score[0])
         removeFile(localFilePath)
         return result
     except Exception as e:
+        print(str(e), flush=True)
         removeFile(localFilePath)
         return {'error': str(e)}
 
