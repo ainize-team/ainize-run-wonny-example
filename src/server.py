@@ -24,6 +24,7 @@ def images():
 
 @app.route('/eval/image', methods=['GET'])
 def image():
+    localFilePath = ''
     try:
         url = request.args.get('url')
         for key in request.args:
