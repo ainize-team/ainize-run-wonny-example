@@ -14,6 +14,8 @@ def healthz():
 def images():
     try:
         urlList = request.get_json()["urlList"]
+        if (len(urlList) > 10):
+            return {'error': 'No more than 10.'}
         localFilePathList = downloadImages(urlList)
         result = list(evaluate(localFilePathList))
         removeFiles(localFilePathList)
