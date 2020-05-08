@@ -4,7 +4,7 @@ info:
   version: 0.1.1
 
 servers: 
-  - url: https://evaluate-image.ehdgus8077.endpoint.ainize.ai
+  - url: https://wonny.ehdgus8077.endpoint.ainize.ai
 
 paths:
   /healthz:
