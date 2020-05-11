@@ -2,9 +2,11 @@ from flask import Flask, request, render_template
 from evaluate import evaluate
 from util import downloadImages, removeFiles, downloadImage, removeFile, getBase64
 import os, io
+from flask_cors import CORS
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/healthz', methods=['GET'])
 def healthz():
@@ -12,6 +14,7 @@ def healthz():
 
 @app.route('/eval/images', methods=['POST'])
 def images():
+    localFilePathList = []
     try:
         urlList = request.get_json()["urlList"]
         if (len(urlList) > 10):

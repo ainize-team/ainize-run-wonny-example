@@ -19,15 +19,15 @@ paths:
       requestBody:
         required: true
         content:
-            applicatioin/json:
-              schema:
-                type: object
-                properties:
-                  urlList:
-                    type: array
-                    items:
-                      type: string
-                      example: <image path>
+          application/json:
+            schema:
+              type: object
+              properties:
+                urlList:
+                  type: array
+                  items:
+                    type: string
+                    example: <image path>
             
       responses:
         '200':

@@ -35,7 +35,10 @@ DOWNLOAD_MAX_SIZE = 5 * 1024 * 1024
 
 def downloadImage(url):
     localFilePath =  IMAGE_PATH + '/' + getRandomStr(15) + '.jpg'
-    r = requests.get(url, stream=True)
+    try: 
+        r = requests.get(url, stream=True)
+    except Exception as e:
+        raise DownloadPrecheckFailed(str(e))
     # Precheck
     content_type = r.headers.get('Content-Type')
     if not content_type or content_type not in (
@@ -59,7 +62,12 @@ def downloadImage(url):
 def downloadImages(urlList):
     localFilePaths = []
     for url in urlList:
-        localFilePaths.append(downloadImage(url))
+        try:
+            for url in urlList:
+                localFilePaths.append(downloadImage(url))
+        except Exception as e:
+            localFilePaths.append(str(e))
+            print(e, flush=True)
     return localFilePaths
 
 
