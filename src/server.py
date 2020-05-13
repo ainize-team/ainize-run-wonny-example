@@ -6,7 +6,9 @@ from flask_cors import CORS
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app, resources={
+  r"/eval/*": {"origin": "*"},
+})
 
 @app.route('/healthz', methods=['GET'])
 def healthz():
