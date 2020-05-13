@@ -1,4 +1,15 @@
 {% block content %}
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164242824-6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-164242824-6');
+    </script>
+</head>
 <body>
     <h1>Score: {{ score }}</h1>
     <img src = "data:image/png;base64,{{imageData}}"/>
