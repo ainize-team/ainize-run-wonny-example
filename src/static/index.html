@@ -102,10 +102,10 @@
             time_obj.innerText = `${start / 10} 's`;
         }, 100);
         document.getElementById('resultText').innerText = '';
-        document.getElementById('origin').src = document.getElementById('source_url').value
         fetch(url, {method:'POST', headers: {'Content-Type': 'application/json'}, body: data})
             .then(response => {
                 if (response.status === 200) {
+                    document.getElementById('origin').src = document.getElementById('source_url').value
                     document.getElementById('resultText').innerText = "";
                     return response;
                 } else if (response.status === 429) {
@@ -139,7 +139,9 @@
                 document.getElementById("preloader").style.display = "none";
                 clearInterval(timer);
                 doubleSubmitFlag = false
-                document.getElementById('score').innerText = `Score: ${payload.score}`;
+                setTimeout(() => {
+                    document.getElementById('score').innerText = `Score: ${payload.score}`;
+                }, 3000)
             })
             .catch(e => {
                 document.getElementById('resultText').innerText = e.message;

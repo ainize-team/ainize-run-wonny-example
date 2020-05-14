@@ -34,7 +34,7 @@ def images():
         removeFiles(localFilePathList)
         return {'error': str(e)}
 
-@app.route('/eval/image', methods=['get'])
+@app.route('/eval/image', methods=['POST'])
 def image():
     localFilePath = ''
     try:
