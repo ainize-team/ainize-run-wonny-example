@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 from evaluate import evaluate
-from util import downloadImage, removeFile, downloadImages, removeFiles
+from util import downloadImage, removeFile, downloadImages, removeFiles, track_event
 import os, io
 from flask_cors import CORS
 from flask import jsonify
@@ -23,6 +23,7 @@ def healthz():
 def images():
     localFilePathList = []
     try:
+        track_event('api', '/eval/images')
         urlList = request.get_json()["urlList"]
         if (len(urlList) > 10):
             return {'error': 'No more than 10.'}
@@ -38,6 +39,7 @@ def images():
 def image():
     localFilePath = ''
     try:
+        track_event('api', '/eval/image')
         url = request.json["url"]
         localFilePath = downloadImage(url)
         score = list(evaluate([localFilePath]))
