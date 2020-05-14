@@ -102,6 +102,8 @@
             time_obj.innerText = `${start / 10} 's`;
         }, 100);
         document.getElementById('resultText').innerText = '';
+        document.getElementById('origin').src = '';
+        document.getElementById('score').innerText = '';
         fetch(url, {method:'POST', headers: {'Content-Type': 'application/json'}, body: data})
             .then(response => {
                 if (response.status === 200) {
