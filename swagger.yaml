@@ -4,7 +4,7 @@ info:
   version: 0.1.1
 
 servers: 
-  - url: https://wonny.ehdgus8077.endpoint.ainize.ai
+  - url: https://wonny-gpu.ehdgus8077.endpoint.ainize.ai
 
 paths:
   /healthz:
@@ -14,19 +14,18 @@ paths:
         '200':
           description: OK
   /eval/image:
-    get:
+    post:
       summary: Returns a score of Image and Image.
-      parameters:
-        - name: url
-          in: query
-          required: true
-          schema:
-            items:
-              type: string
-          examples:
-            sample:
-              summary: sample URL
-              value: 'https://drive.google.com/uc?export=view&id=1SjpQKWR2ssWU358bI_d9YuFSxoNU1WPZ'   # ?ids=5
+      requestBody:
+        content:
+           application/json:
+              schema:
+                 type: object
+                 properties:
+                    url:
+                       type: string
+                 required:
+                    - url  
       responses:
         '200': 
-          description: OK
+          description: '{ score: number }'

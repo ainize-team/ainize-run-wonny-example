@@ -1,14 +1,19 @@
 from flask import Flask, request, render_template
 from evaluate import evaluate
-from util import downloadImages, removeFiles, downloadImage, removeFile, getBase64
+from util import downloadImage, removeFile, downloadImages, removeFiles
 import os, io
 from flask_cors import CORS
+from flask import jsonify
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 app = Flask(__name__)
 cors = CORS(app, resources={
   r"/eval/*": {"origin": "*"},
 })
+
+@app.route('/', methods=['GET'])
+def main():
+    return app.send_static_file('index.html')
 
 @app.route('/healthz', methods=['GET'])
 def healthz():
@@ -29,24 +34,18 @@ def images():
         removeFiles(localFilePathList)
         return {'error': str(e)}
 
-@app.route('/eval/image', methods=['GET'])
+@app.route('/eval/image', methods=['get'])
 def image():
     localFilePath = ''
     try:
-        url = request.args.get('url')
-        for key in request.args:
-            if key != 'url':
-                url += '&' + key + '=' + request.args[key]
+        url = request.json["url"]
         localFilePath = downloadImage(url)
         score = list(evaluate([localFilePath]))
-        imageData = getBase64(localFilePath)
-        result = render_template("index.html", imageData=imageData, score=score[0])
-        removeFile(localFilePath)
-        return result
+        return jsonify({'score': str(score[0])}), 200
     except Exception as e:
-        print(str(e), flush=True)
+        return jsonify({'message': str(e)}), 400
+    finally:
         removeFile(localFilePath)
-        return {'error': str(e)}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)

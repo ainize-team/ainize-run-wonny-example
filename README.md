@@ -56,13 +56,10 @@ https://drive.google.com/uc?export=view&id=${imageId}
 
 ## How to query the server
 
-Finally, you can pass the image url to Wonny server to get the evaluation result:
-```
-// Get
-http://${host}/eval/image?url=${imageUrl}
-http://localhost/eval/image?url=${imageUrl}  # for local host
+<img src="/images/index_page.png" width="250" />  
 
 ```
+Input Link for image.(Size of file should be less than 5Mb)
 
 ## References
 * [Introducing NIMA: Neural Image Assessment](https://ai.googleblog.com/2017/12/introducing-nima-neural-image-assessment.html) on Google AI Blog
