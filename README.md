@@ -56,7 +56,7 @@ https://drive.google.com/uc?export=view&id=${imageId}
 
 ## How to query the server
 
-<img src="/images/index_page.png" width="250" />  
+<img src="/images/index_page.png" width="600" />  
 
 ```
 Input Link for image.(Size of file should be less than 5Mb)
