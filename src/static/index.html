@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164242824-6"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-164242824-6');
+        </script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <meta property="og:title" content="Wonny" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Returns a score of Image" />
+        <meta property="og:image" content="https://drive.google.com/uc?export=view&id=1SjpQKWR2ssWU358bI_d9YuFSxoNU1WPZ" />
+  </head>
+  <body>
+    <div class=container>
+    <div class="jumbotron mt-3">
+    <h1>Wonny</h1>
+    <A>Returns a score of Image.</A><br><br>
+    <A>Git hub repository : </A> <A href="https://github.com/ainize-team/ainize-run-wonny-example"> Wonny </A> <br>
+    <A>API deployed on  </A> <A href="https://ainize.ai/ehdgus8077/wonny"> Ainize </A> <br>
+    <A>You can use an image url from this website. </A> <A href="https://imgur.com/"> imgur.com </A><br>
+    <hr class="my-4">
+    <h3>Image URL: <input id="source_url" placeholder="http:// "> </h3>
+    <A>Size of image file should be less than 5MB.</A><br>
+    <style>
+    #submit{
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    </style>
+
+    <h3 style="margin-top: 20;">   <button type="submit" class="btn btn-primary btn-lg" id="submit">RUN</button></h3>
+    
+    <div id="preloader">
+        <div class="d-flex align-items-center">
+            <strong id="time">Loading...</strong>
+            <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+        </div>
+    </div>
+
+    <div id="result" style="width: 480; margin-left: auto; margin-right: auto;">
+        <div id="resultText"></div>
+        <table>
+            <tr>
+                <td id="left" style="width: 50%; height: 50%;">
+                    <image id="origin" style="width: 100%; height:auto;">
+                </td>
+                <td id="right" style="width: 30%; height: 30%; padding-left: 5%;">
+                    <div id="score" style="font-size: 30px; color: red;"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+    let time_obj = document.getElementById("time");
+    let timer = undefined;
+    let start = undefined;
+    var doubleSubmitFlag = false;
+    document.getElementById("preloader").style.display = "none";
+    function doubleSubmitCheck(){
+        if(doubleSubmitFlag){
+            return doubleSubmitFlag;
+        }else{
+            doubleSubmitFlag = true;
+            return false;
+        }
+    }
+
+    const run = (retry_cnt=0, retry_sec=1,) => {
+        if(doubleSubmitCheck()) {
+            console.log("Please wait");
+            return ;
+        }
+        if (retry_cnt < 3) {
+            retry_cnt += 1
+            retry_sec *= 2
+        } else {
+            doubleSubmitFlag = false
+            throw Error('Retry Error');
+        }
+        if (document.getElementById('source_url').value==""||document.getElementById('source_url').value==null){
+            alert('Please input URL!');
+            doubleSubmitFlag = false
+            return;
+        }
+            url = "/eval/image"
+            data = JSON.stringify({
+            url: document.getElementById('source_url').value,
+            })
+        document.getElementById("preloader").style.display = "block";
+        start = 0;
+        timer= setInterval(() => {
+            start += 1;
+            time_obj.innerText = `${start / 10} 's`;
+        }, 100);
+        document.getElementById('resultText').innerText = '';
+        fetch(url, {method:'POST', headers: {'Content-Type': 'application/json'}, body: data})
+            .then(response => {
+                if (response.status === 200) {
+                    document.getElementById('origin').src = document.getElementById('source_url').value
+                    document.getElementById('resultText').innerText = "";
+                    return response;
+                } else if (response.status === 429) {
+                    document.getElementById('resultText').innerText = (`retry ${retry_cnt}th after ${retry_sec}secs ...`);
+                    setTimeout(
+                        () => {
+                            clearInterval(timer);
+                            doubleSubmitFlag = false
+                            run(retry_cnt, retry_sec)
+                        }, retry_sec * 1000
+                    )
+                } else if (response.status === 400) {
+                    return response.json().then(errorPayload => {
+                        throw Error(errorPayload.message);
+                        clearInterval(timer);
+                        doubleSubmitFlag = false
+                    });
+                } else if(response.status=== 500) {
+                    return response.json().then(errorPayload => {
+                        throw Error(errorPayload.message);
+                        clearInterval(timer);
+                        doubleSubmitFlag = false
+                    });
+                } else {
+                    throw Error('Server Busy -- Please Wait!');
+                }
+            })
+            .then(response => response.json())
+            .then(payload => {
+                document.getElementById('result').style.display = 'block';
+                document.getElementById("preloader").style.display = "none";
+                clearInterval(timer);
+                doubleSubmitFlag = false
+                setTimeout(() => {
+                    document.getElementById('score').innerText = `Score: ${payload.score}`;
+                }, 3000)
+            })
+            .catch(e => {
+                document.getElementById('resultText').innerText = e.message;
+                document.getElementById("preloader").style.display = "none";
+                document.getElementById('score').innerText = '';
+
+                clearInterval(timer);
+                doubleSubmitFlag = false
+            })
+    };
+    document.getElementById('submit').onclick = () => run()
+    </script>
+    </div>
+    </div>
+  </body>
+<html>
