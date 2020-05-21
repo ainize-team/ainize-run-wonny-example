@@ -23,7 +23,7 @@ def healthz():
 def images():
     localFilePathList = []
     try:
-        track_event('api', '/eval/images')
+        track_event('spotainize_common', 'api', '/eval/images')
         urlList = request.get_json()["urlList"]
         if (len(urlList) > 10):
             return {'error': 'No more than 10.'}
@@ -39,7 +39,7 @@ def images():
 def image():
     localFilePath = ''
     try:
-        track_event('api', '/eval/image')
+        track_event('spotainize_common', 'api', '/eval/image')
         url = request.json["url"]
         localFilePath = downloadImage(url)
         score = list(evaluate([localFilePath]))
