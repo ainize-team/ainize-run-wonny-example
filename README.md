@@ -16,13 +16,21 @@ Note that the server is implemented in Node.js.
 Wonny server is dockerized, so it can be built and run using docker commands.
 
 ## Docker build
+
+
 ```
-docker build -t wonny .
+docker build -t wonny -f Dockerfile-cpu .
+```
+
+or
+
+```
+docker build -t wonny -f Dockerfile-gpu .
 ```
 
 ## Docker run 
 ```
-docker run -it wonny
+docker run -p 80:80 -it wonny
 ```
 Now the server is available at http://localhost. To learn how to query the server, see the next section.
 
