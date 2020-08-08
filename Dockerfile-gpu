@@ -28,6 +28,9 @@ RUN pip3 install flask_cors
 RUN mkdir /image-eval
 ADD ./ /image-eval
 
+# make donwload dir
+RUN mkdir /image-eval/src/images/
+
 EXPOSE 80
 
 WORKDIR /image-eval
