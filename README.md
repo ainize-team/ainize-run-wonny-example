@@ -1,36 +1,36 @@
-# Ainize-run-wonny-example ![alt text](/images/wonny.jpeg) 
+# Ainize-run-afanda-example ![alt text](/images/afanda.jpeg) 
 
-[![Run on Ainize](https://www.ainize.ai/static/images/run_on_ainize_button.svg)](https://ainize.ai/ehdgus8077/wonny)
+[![Run on Ainize](https://www.ainize.ai/static/images/run_on_ainize_button.svg)](https://ainize.ai/ehdgus8077/afanda)
 
-This repository provides an API server, called Wonny server, that evaluates images based on an aesthetic and technical image quality model. The model used in the server is from [Image Quality Assessment](https://github.com/idealo/image-quality-assessment), which is an implementation of Google's research paper "NIMA: Neural Image Assessment". 
+This repository provides an API server, called afanda server, that evaluates images based on an aesthetic and technical image quality model. The model used in the server is from [Image Quality Assessment](https://github.com/idealo/image-quality-assessment), which is an implementation of Google's research paper "NIMA: Neural Image Assessment". 
 
-The evaluation using Wonny server is done in the following steps:
+The evaluation using afanda server is done in the following steps:
 1. User publishes an image file
-2. User queries Wonny server with the image url
-3. Wonny server returns a quality score of the image in the scale of 1 to 10
+2. User queries afanda server with the image url
+3. afanda server returns a quality score of the image in the scale of 1 to 10
 
 Note that the server is implemented in Node.js.
 
 # How to deploy
 
-Wonny server is dockerized, so it can be built and run using docker commands.
+afanda server is dockerized, so it can be built and run using docker commands.
 
 ## Docker build
 
 
 ```
-docker build -t wonny -f Dockerfile-cpu .
+docker build -t afanda -f Dockerfile-cpu .
 ```
 
 or
 
 ```
-docker build -t wonny -f Dockerfile-gpu .
+docker build -t afanda -f Dockerfile-gpu .
 ```
 
 ## Docker run 
 ```
-docker run -p 80:80 -it wonny
+docker run -p 80:80 -it afanda
 ```
 Now the server is available at http://localhost. To learn how to query the server, see the next section.
 

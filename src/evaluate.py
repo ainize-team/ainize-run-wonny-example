@@ -5,7 +5,7 @@ from model import *
 import numpy
 
 script_path = os.path.dirname(os.path.realpath(__file__))
-weights_file = script_path + "/weights_mobilenet_aesthetic_0.07.hdf5"
+weights_file = script_path + "/weights_mobilenet_technical_0.11.hdf5"
 model = MyModel('MobileNet', weights=None)
 model.build()
 model.my_model.load_weights(weights_file)
@@ -20,4 +20,3 @@ def evaluate(images):
     prediction = predict(model.my_model, inputList)
     output = calc_mean_score(prediction)
     return output
-
