@@ -4,7 +4,7 @@ info:
   version: 0.1.1
 
 servers: 
-  - url: https://master-ainize-run-wonny-example-ainize-team.endpoint.ainize.ai/
+  - url: https://master-ainize-run-wonny-example-ainize-team.endpoint.ainize.ai
 
 paths:
   /healthz:
