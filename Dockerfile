@@ -1,13 +1,21 @@
-FROM tensorflow/tensorflow:1.13.1-py3
+FROM tensorflow/tensorflow:1.13.1-gpu-py3
 
-RUN apt-get update
 ENV SHELL /bin/bash
 
-# install npm and python
-RUN apt-get install -y \
-        apt-transport-https
+# Install system packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      apt-transport-https \
+      bzip2 \
+      g++ \
+      git \
+      graphviz \
+      libgl1-mesa-glx \
+      libhdf5-dev \
+      openmpi-bin \
+      wget && \
+    rm -rf /var/lib/apt/lists/*
 
-# install ml lib
+# Install ML lib
 RUN pip3 install flask 
 RUN pip3 install pandas 
 RUN pip3 install keras==2.1.3
@@ -16,9 +24,10 @@ RUN pip3 install pillow
 RUN pip3 install requests
 RUN pip3 install flask_cors
 
-# copy code.
+# Copy code.
 RUN mkdir /image-eval
 ADD ./ /image-eval
+
 
 # make donwload dir
 RUN mkdir /image-eval/src/images/

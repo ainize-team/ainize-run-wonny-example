@@ -24,7 +24,7 @@ def images():
     localFilePathList = []
     try:
         track_event('spotainize_common', 'api', '/eval/images')
-        urlList = request.get_json()["urlList"]
+        urlList = request.json["urlList"]
         if (len(urlList) > 10):
             return {'error': 'No more than 10.'}
         localFilePathList = downloadImages(urlList)
