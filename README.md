@@ -66,7 +66,7 @@ https://drive.google.com/uc?export=view&id=${imageId}
 
 <img src="/images/index_page.png" width="600" />  
 
-Input Link for image.(Size of file should be less than 5Mb)
+Input Link for image.(Size of file should be less than 40Mb)
 
 ## References
 * [Introducing NIMA: Neural Image Assessment](https://ai.googleblog.com/2017/12/introducing-nima-neural-image-assessment.html) on Google AI Blog

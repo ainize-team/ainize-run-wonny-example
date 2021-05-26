@@ -31,7 +31,7 @@ def removeFiles(filePaths):
 class DownloadPrecheckFailed(Exception):
     pass
 
-DOWNLOAD_MAX_SIZE = 5 * 1024 * 1024
+DOWNLOAD_MAX_SIZE = 40 * 1024 * 1024
 
 def downloadImage(url):
     localFilePath =  IMAGE_PATH + '/' + getRandomStr(15) + '.jpg'
@@ -49,14 +49,14 @@ def downloadImage(url):
         raise DownloadPrecheckFailed('Non-image url is not supported.')
     content_length = int(r.headers.get('Content-Length', 0))
     if not content_length or content_length > DOWNLOAD_MAX_SIZE:
-        raise DownloadPrecheckFailed('Size of file should be less than 5Mb.')
+        raise DownloadPrecheckFailed('Size of file should be less than 40Mb.')
     downloaded_size = 0
     with open(localFilePath, 'wb') as handler:
         for data in r.iter_content():
             handler.write(data)
             downloaded_size += len(data)
             if downloaded_size > DOWNLOAD_MAX_SIZE:
-                raise DownloadPrecheckFailed('Size of file should be less than 5Mb.')
+                raise DownloadPrecheckFailed('Size of file should be less than 40Mb.')
     return localFilePath
 
 def downloadImages(urlList):
