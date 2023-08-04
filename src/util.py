@@ -23,7 +23,7 @@ def removeFile(filePath):
 
 def removeFiles(filePaths):
     try:
-        for filePath in filePathList:
+        for filePath in filePaths:
             removeFile(filePath)
     except:
         pass
