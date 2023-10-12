@@ -19,8 +19,7 @@ RUN pip3 install --no-cache-dir \
     flask_cors
 
 # copy code.
-RUN mkdir /image-eval
-ADD ./ /image-eval
+COPY ./ /image-eval
 
 # make donwload dir
 RUN mkdir /image-eval/src/images/
