@@ -2,8 +2,9 @@ FROM python:3.10-slim
 
 ENV SHELL /bin/bash
 
-# Install system packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# install apt packages
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
       apt-transport-https \
       bzip2 \
       g++ \
@@ -16,15 +17,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install ML lib
-RUN pip3 install "tensorflow[and-cuda]"
-RUN python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
-RUN pip3 install flask
-RUN pip3 install pandas 
-RUN pip3 install "numpy<1.26"
-RUN pip3 install pillow
-RUN pip3 install requests
-RUN pip3 install flask_cors
+# install ml lib
+RUN pip3 install --no-cache-dir \
+    "tensorflow[and-cuda]" \
+    flask \
+    pandas \
+    "numpy<1.26" \
+    pillow \
+    requests \
+    flask_cors
 
 # Copy code.
 RUN mkdir /image-eval
