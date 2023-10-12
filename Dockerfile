@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       libhdf5-dev \
       openmpi-bin \
       wget && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Install ML lib
