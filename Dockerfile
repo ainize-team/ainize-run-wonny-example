@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM tensorflow/tensorflow:2.14.0-gpu
 
 ENV SHELL /bin/bash
 
@@ -19,7 +19,6 @@ RUN apt-get update && \
 
 # install ml lib
 RUN pip3 install --no-cache-dir \
-    "tensorflow[and-cuda]" \
     flask \
     pandas \
     "numpy<1.26" \
