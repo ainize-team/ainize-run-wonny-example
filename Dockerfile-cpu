@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:1.13.1-py3
+FROM python:3.10-slim
 
 RUN apt-get update
 ENV SHELL /bin/bash
@@ -8,10 +8,12 @@ RUN apt-get install -y \
         apt-transport-https
 
 # install ml lib
+RUN pip3 install "tensorflow==2.14.0"
+RUN python3 -c "import tensorflow as tf; print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
+RUN pip3 install --ignore-installed blinker # for MacOS
 RUN pip3 install flask 
 RUN pip3 install pandas 
-RUN pip3 install keras==2.1.3
-RUN pip3 install "numpy<1.17"
+RUN pip3 install "numpy<1.26"
 RUN pip3 install pillow
 RUN pip3 install requests
 RUN pip3 install flask_cors

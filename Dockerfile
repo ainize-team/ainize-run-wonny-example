@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:1.13.1-gpu-py3
+FROM python:3.10-slim
 
 ENV SHELL /bin/bash
 
@@ -16,10 +16,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 # Install ML lib
-RUN pip3 install flask 
+RUN pip3 install "tensorflow[and-cuda]"
+RUN python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+RUN pip3 install flask
 RUN pip3 install pandas 
-RUN pip3 install keras==2.1.3
-RUN pip3 install "numpy<1.17"
+RUN pip3 install "numpy<1.26"
 RUN pip3 install pillow
 RUN pip3 install requests
 RUN pip3 install flask_cors
