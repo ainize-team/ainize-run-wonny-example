@@ -25,7 +25,7 @@ docker build -t wonny -f Dockerfile-cpu .
 or
 
 ```
-docker build -t wonny -f Dockerfile-gpu .
+docker build -t wonny -f Dockerfile .
 ```
 
 ## Docker run 

@@ -9,7 +9,7 @@ weights_file = script_path + "/weights_mobilenet_aesthetic_0.07.hdf5"
 model = MyModel('MobileNet', weights=None)
 model.build()
 model.my_model.load_weights(weights_file)
-model.my_model._make_predict_function()
+model.my_model.make_predict_function()
 
 def evaluate(images):
     # initialize data generator
